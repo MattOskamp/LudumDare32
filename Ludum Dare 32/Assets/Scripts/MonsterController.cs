@@ -4,6 +4,7 @@ using System.Collections;
 public class MonsterController : MonoBehaviour {
 
 	public Transform player;
+	public float speed = 1.8f;
 
 	// Use this for initialization
 	void Start () {
@@ -23,5 +24,11 @@ public class MonsterController : MonoBehaviour {
 			else
 				Debug.DrawLine(this.transform.position, this.player.position, Color.red);
 		}
+	}
+
+	void FixedUpdate() {
+		Vector3 heading = player.position - this.transform.position;
+		heading.Normalize ();
+		this.transform.position += heading * speed * Time.deltaTime;
 	}
 }

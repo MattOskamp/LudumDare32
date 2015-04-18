@@ -33,6 +33,7 @@ public class LightController : MonoBehaviour {
 		Vector3 newPosition = Vector3.zero;
 		newPosition.x = Mathf.Lerp( this.transform.position.x, target.position.x + xOffset, Time.deltaTime * speed);
 		newPosition.y = Mathf.Lerp( this.transform.position.y, target.position.y + yOffset, Time.deltaTime * speed);
+
 		this.transform.position = newPosition;
 	}
 

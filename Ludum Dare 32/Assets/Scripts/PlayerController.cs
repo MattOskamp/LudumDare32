@@ -15,17 +15,8 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (Input.GetAxis("Horizontal") != 0 && Input.GetAxis("Vertical") != 0)
 		{
-			float angle = Mathf.Atan2(Mathf.Abs(Input.GetAxis("Vertical")), Mathf.Abs(Input.GetAxis("Horizontal")));
-
-			float xSpeed = speed*Mathf.Cos(angle);
-			if (Input.GetAxis("Horizontal") < 0)
-				xSpeed *= -1;
-			cc.Move(Vector3.right*Time.deltaTime*xSpeed);
-
-			float ySpeed = speed*Mathf.Sin(angle);
-			if (Input.GetAxis("Vertical") < 0)
-		        ySpeed *= -1;
-			cc.Move(Vector3.up*Time.deltaTime*ySpeed);
+			cc.Move(Vector3.right*Time.deltaTime*speed*Input.GetAxis("Horizontal")*Mathf.Sqrt(0.5f));
+			cc.Move(Vector3.up*Time.deltaTime*speed*Input.GetAxis("Vertical")*Mathf.Sqrt(0.5f));
 		}
 		else if (Input.GetAxis("Horizontal") != 0)
 		{

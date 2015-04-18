@@ -24,11 +24,14 @@ public class MonsterController : MonoBehaviour {
 			else
 				Debug.DrawLine(this.transform.position, this.player.position, Color.red);
 		}
+
+		// raycast to see if the enemy will run into a wall
+
 	}
 
 	void FixedUpdate() {
 		Vector3 heading = player.position - this.transform.position;
 		heading.Normalize ();
-		this.transform.position += heading * speed * Time.deltaTime;
+		//this.transform.position += heading * speed * Time.deltaTime;
 	}
 }

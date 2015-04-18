@@ -1,0 +1,165 @@
+fileFormatVersion: 2
+guid: dcf1c2c83fe004b3ba01fba32f8297c3
+timeCreated: 1429388614
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Character_Hat
+    21300002: Character_ShoulderLeft
+    21300004: Character_ShoulderRight
+    21300006: Character_ShoeLeft
+    21300008: Character_ShoeRight
+    21300010: Character_Flashlight
+    21300012: Character_LetFront
+    21300014: Character_HandLeft
+    21300016: Character_HandRight
+    21300018: Character_LegBack
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Character_Hat
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 369
+        width: 146
+        height: 106
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_ShoulderLeft
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 381
+        width: 59
+        height: 47
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_ShoulderRight
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 381
+        width: 58
+        height: 47
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_ShoeLeft
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 258
+        width: 43
+        height: 69
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_ShoeRight
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 258
+        width: 43
+        height: 69
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_Flashlight
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 209
+        width: 34
+        height: 126
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_LetFront
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 197
+        width: 52
+        height: 27
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_HandLeft
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 173
+        width: 34
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_HandRight
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 130
+        width: 33
+        height: 44
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Character_LegBack
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 101
+        width: 51
+        height: 28
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour {
 
 	[SerializeField] private float speed;
 	private CharacterController cc;
-	private Vector3 screenPoint;
+	private Vector3 mouseDirection;
 	private float distMX, distMY;
 
 	void Start ()
@@ -31,8 +31,9 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		//facing direction
-		screenPoint = Camera.main.WorldToScreenPoint(transform.position);
-		transform.rotation = Quaternion.LookRotation(Input.mousePosition - screenPoint, Vector3.back);
+		mouseDirection = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+		mouseDirection.z = 0;
+		transform.LookAt(mouseDirection, Vector3.back);
 
 		/*if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
 		{

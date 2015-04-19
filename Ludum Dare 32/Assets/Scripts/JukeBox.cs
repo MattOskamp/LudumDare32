@@ -16,7 +16,6 @@ public class JukeBox : MonoBehaviour {
 			AudioClip temp = musics[i];
 			musics[i] = musics[r];
 			musics[r] = temp;
-			Debug.Log(i);
 		}
 		currentlyPlaying = 0;
 	}

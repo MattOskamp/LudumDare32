@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: b3859c60c164d4b9c82067fc3fff87bf
-timeCreated: 1429463511
+timeCreated: 1429473039
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
@@ -10,6 +10,8 @@ TextureImporter:
     21300006: Spider_Butt
     21300008: Spider_Pincher_R
     21300010: Spider_Leg_R
+    21300012: Spider_Button
+    21300014: Spider_Loading
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -114,6 +116,26 @@ TextureImporter:
         height: 116
       alignment: 9
       pivot: {x: .602288663, y: .0421700962}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spider_Button
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 140
+        width: 192
+        height: 93
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Spider_Loading
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 83
+        width: 177
+        height: 49
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

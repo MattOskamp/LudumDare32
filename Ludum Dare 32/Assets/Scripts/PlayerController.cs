@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour {
 	private float timer = 0;
 	public float flickerTimer = 0;
 	public Light flashSpotLight;
+	public float keyCount = 0;
 
 	public enum State {
 		On,
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour {
 		tor = GetComponent<Animator>();
 		theState = State.Off;
 		flashLightOff ();
+		keyCount = 0;
 	}
 
 	void Update ()

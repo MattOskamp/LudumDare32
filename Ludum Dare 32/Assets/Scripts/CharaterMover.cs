@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class CharaterMover : MonoBehaviour {
+	public int numberOfKeys = 0;
 
 	CharacterController controller;
 	public float speed = 2.0f;
@@ -23,5 +24,12 @@ public class CharaterMover : MonoBehaviour {
 		Vector3 objectPos = Camera.main.WorldToScreenPoint(this.transform.position);
 		Vector3 dir = Input.mousePosition - objectPos; 
 		//transform.rotation = Quaternion.Euler (new Vector3 (0, 0, Mathf.Atan2 (dir.y, dir.x) * Mathf.Rad2Deg));
+	}
+
+	void OnTriggerEnter(Collider other) {
+		if (other.tag == "Key") {
+			numberOfKeys++;
+			Destroy(other.gameObject);
+		}
 	}
 }

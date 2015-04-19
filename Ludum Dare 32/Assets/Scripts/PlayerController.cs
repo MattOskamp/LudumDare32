@@ -5,12 +5,14 @@ public class PlayerController : MonoBehaviour {
 
 	[SerializeField] private float speed;
 	private CharacterController cc;
+	private Animator tor;
 	private Vector3 mouseDirection;
 	private float mouseAngle;
 
 	void Start ()
 	{
 		cc = GetComponent<CharacterController>();
+		tor = GetComponent<Animator>();
 	}
 
 	void Update ()
@@ -30,11 +32,19 @@ public class PlayerController : MonoBehaviour {
 			cc.Move(Vector3.up*Time.deltaTime*speed*Input.GetAxis("Vertical"));
 		}
 
+		if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+		{
+			tor.SetBool("Walking", true);
+		}
+		else
+		{
+			tor.SetBool("Walking", false);
+		}
+
 		//facing direction
 		mouseDirection = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
 		mouseAngle = Mathf.Atan2(mouseDirection.y, mouseDirection.x)*Mathf.Rad2Deg-90;
 		transform.rotation = Quaternion.AngleAxis(mouseAngle, Vector3.forward);
-		//transform.LookAt(mouseDirection, Vector3.forward);
 
 		/*if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
 		{

@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour {
 	private Animator tor;
 	private Vector3 mouseDirection;
 	private float mouseAngle;
+	public GameObject flashLight;
+	private bool flashLightOn = false;
 
 	void Start ()
 	{
@@ -17,6 +19,15 @@ public class PlayerController : MonoBehaviour {
 
 	void Update ()
 	{
+		if (Input.GetMouseButtonDown (0)) {
+			flashLightOn = !flashLightOn;
+		}
+
+		if (flashLightOn)
+			flashLight.SetActive(true);
+		else
+			flashLight.SetActive(false);
+
 		
 		//facing direction
 		mouseDirection = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);

@@ -14,4 +14,10 @@ public class Pickup : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	void OnTriggerEnter(Collider other) {
+		if (other.tag.Equals ("Player")) {
+			Destroy(gameObject);
+		}
+	}
 }

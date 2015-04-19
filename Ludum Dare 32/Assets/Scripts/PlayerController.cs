@@ -9,25 +9,70 @@ public class PlayerController : MonoBehaviour {
 	private Vector3 mouseDirection;
 	private float mouseAngle;
 	public GameObject flashLight;
-	private bool flashLightOn = false;
+	public float batteryLife = 3;
+	private float timer = 0;
+	public float flickerTimer = 0;
+	public Light flashSpotLight;
+
+	public enum State {
+		On,
+		Off,
+		Flickering
+	}
+
+	public State theState;
 
 	void Start ()
 	{
 		cc = GetComponent<CharacterController>();
 		tor = GetComponent<Animator>();
+		theState = State.Off;
+		flashLightOff ();
 	}
 
 	void Update ()
 	{
-		if (Input.GetMouseButtonDown (0)) {
-			flashLightOn = !flashLightOn;
+		switch (theState) {
+		case State.On:
+			if (Input.GetMouseButtonDown(0)) {
+				theState = State.Off;
+				flashLightOff();
+				timer = 0;
+			}
+
+			// start the timer
+			timer += Time.deltaTime;
+			if (timer > batteryLife) {
+				// flicker and turn off
+				timer = 0;
+				theState = State.Flickering;
+			}
+
+			break;
+		case State.Off:
+			if (Input.GetMouseButtonDown(0)) {
+				theState = State.On;
+				flashLightOn();
+			}
+
+			break;
+		case State.Flickering:
+			flickerTimer += Time.deltaTime;
+			if (flickerTimer > 0 && flickerTimer < 0.1f)
+				flashLightOff();
+			else if (flickerTimer > 0.1f && flickerTimer < 0.5f)
+				flashLightOn();
+			else if (flickerTimer > 0.5f && flickerTimer < 0.8f)
+				flashLightOff();
+			else if (flickerTimer > 0.8f && flickerTimer < 1.0f)
+				flashLightOn();
+			else if (flickerTimer > 1.0f) {
+				theState = State.Off;
+				flashLightOff();
+				flickerTimer = 0;
+			}
+			break;
 		}
-
-		if (flashLightOn)
-			flashLight.SetActive(true);
-		else
-			flashLight.SetActive(false);
-
 		
 		//facing direction
 		mouseDirection = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
@@ -62,6 +107,19 @@ public class PlayerController : MonoBehaviour {
 		{
 			tor.SetBool("Walking", false);
 		}
+
+
 	}
+
+	public void flashLightOn() {
+		flashLight.GetComponent<Renderer> ().enabled = true;
+		flashSpotLight.enabled = true;
+	}
+	
+	public void flashLightOff() {
+		flashLight.GetComponent<Renderer> ().enabled = false;
+		flashSpotLight.enabled = false;
+	}
+
 
 }

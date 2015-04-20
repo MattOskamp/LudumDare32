@@ -13,6 +13,11 @@ public class MonsterController : MonoBehaviour {
 	public float flashLightRange = 5.0f;
 	public GameObject smoke;
 	private PlayerController playerController;
+	private CharacterController cc;
+	private Animator tor;
+	[SerializeField] private GameObject child;
+	[SerializeField] private float playerDist;
+	[SerializeField] private float detectionDistance;
 
 	public enum State {
 		Chasing,
@@ -24,20 +29,31 @@ public class MonsterController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		theState = State.Chasing;
 		playerController = target.GetComponent<PlayerController> ();
+		cc = GetComponent<CharacterController>();
+		tor = child.GetComponent<Animator>();
+		setIdle();
 	}
 
 	public void setDying() {
 		theState = State.Dying;
+		tor.speed = 0;
 	}
-
+	
 	public void setIdle() {
 		theState = State.Idle;
+		tor.speed = 0;
+	}
+	
+	public void setChasing() {
+		theState = State.Chasing;
+		tor.speed = 1;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		playerDist = (target.position - transform.position).sqrMagnitude;
 
 		RaycastHit hit;
 
@@ -61,14 +77,14 @@ public class MonsterController : MonoBehaviour {
 			if (hit.collider.gameObject.tag == "Navi") {
 				//Debug.DrawLine (this.transform.position, lightPosition, Color.green);
 				// is in the light so change state to idle
-				theState = State.Idle;
-			} else {
+				setIdle();
+			} else if (playerDist <= detectionDistance*detectionDistance) {
 				//Debug.DrawLine (this.transform.position, lightPosition, Color.red);
-				theState = State.Chasing;
+				setChasing();
 			}
-		} else {
+		} else if (playerDist <= detectionDistance*detectionDistance) {
 			// out of range can start chasing
-			theState = State.Chasing;
+			setChasing();
 		}
 
 		Vector3 toPlayer = this.target.position - transform.position;
@@ -83,7 +99,7 @@ public class MonsterController : MonoBehaviour {
 					float angle = Mathf.Rad2Deg * dotProd;
 					if (angle > 50.0f && angle < 60.0f) {
 						// start dying
-						theState = State.Dying;
+						setDying();
 					}
 					
 				}
@@ -92,32 +108,22 @@ public class MonsterController : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
+
+		//constant artificial gravity, in case of collision weirdness
+		cc.Move(Vector3.forward*Time.deltaTime);
+
 		switch (theState) {
 		case State.Chasing:
-			dir = (target.position - transform.position);
-			
-			leftR = transform.position + (transform.right * -0.5f);
-			rightR = transform.position + (transform.right * 0.5f);
-			RaycastHit hit;
-			if(Physics.Raycast(leftR, transform.up, out hit, speed))
-			{
-				if(hit.transform != transform && hit.transform != target)
-				{
-					dir += hit.normal*20;
-				}
-			}
-			
-			if(Physics.Raycast(rightR, transform.up, out hit, speed))
-			{
-				if(hit.transform != transform && hit.transform != target)
-				{
-					dir += hit.normal*20;
-				}
-			}
-			
+
+			//rotation toward player
+			dir = target.position - transform.position;
 			angle = Mathf.Atan2(dir.y, dir.x)*Mathf.Rad2Deg-90;
-			transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.AngleAxis(angle, Vector3.forward),Time.deltaTime);
-			transform.position += transform.up * speed * Time.deltaTime;
+			//transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime);
+			transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+			
+			//movement forward
+			cc.Move(transform.up * speed * Time.deltaTime);
+
 			break;
 		case State.Dying:
 			break;

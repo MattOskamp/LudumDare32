@@ -34,6 +34,12 @@ public class PlayerController : MonoBehaviour {
 
 	void Update ()
 	{
+
+		if (Input.GetAxis("Jump") != 0)
+		{
+			Application.LoadLevel("Title");
+		}
+
 		switch (theState) {
 		case State.On:
 			if (Input.GetMouseButtonDown(0)) {
@@ -111,6 +117,14 @@ public class PlayerController : MonoBehaviour {
 		}
 
 
+	}
+
+	void OnTriggerEnter (Collider other)
+	{
+		if (other.tag == "Monster")
+		{
+			Application.LoadLevel("Title");
+		}
 	}
 
 	public void flashLightOn() {

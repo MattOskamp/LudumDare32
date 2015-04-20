@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour {
 	public float flickerTimer = 0;
 	public Light flashSpotLight;
 	public float keyCount = 0;
+	private bool dead = false;
+	private float deadTimer = 0.5f;
 
 	public enum State {
 		On,
@@ -34,10 +36,13 @@ public class PlayerController : MonoBehaviour {
 
 	void Update ()
 	{
-
-		if (Input.GetAxis("Jump") != 0)
+		if (dead)
 		{
-			Application.LoadLevel("Title");
+			deadTimer -= Time.deltaTime;
+			if (deadTimer <= 0)
+			{
+				Application.LoadLevel("Title");
+			}
 		}
 
 		switch (theState) {
@@ -123,7 +128,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (other.tag == "Monster")
 		{
-			Application.LoadLevel("Title");
+			dead = true;
 		}
 	}
 

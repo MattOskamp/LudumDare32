@@ -19,11 +19,9 @@ public class Pickup : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		Debug.Log (other.name);
 		if (other.tag.Equals ("Navi")) {
 			playerController.keyCount++;
 			Destroy(gameObject);
-			Debug.Log("destroy");
 		}
 	}
 }

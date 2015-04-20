@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -15,7 +16,7 @@ public class PlayerController : MonoBehaviour {
 	public Light flashSpotLight;
 	public float keyCount = 0;
 	private bool dead = false;
-	private float deadTimer = 0.5f;
+	private float deadTimer = 2.5f;
 
 	public enum State {
 		On,
@@ -25,6 +26,8 @@ public class PlayerController : MonoBehaviour {
 
 	public State theState;
 
+	Image youDied;
+
 	void Start ()
 	{
 		cc = GetComponent<CharacterController>();
@@ -32,6 +35,7 @@ public class PlayerController : MonoBehaviour {
 		theState = State.Off;
 		flashLightOff ();
 		keyCount = 0;
+		youDied = GameObject.Find("YouDied").GetComponent<Image>();
 	}
 
 	void Update ()
@@ -129,6 +133,7 @@ public class PlayerController : MonoBehaviour {
 		if (other.tag == "Monster")
 		{
 			dead = true;
+			youDied.enabled = true;
 		}
 	}
 
